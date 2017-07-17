@@ -1,0 +1,7 @@
+{
+	"require": {
+		"dclarkfarr/codeframe": "1.x-dev"
+	},
+
+	 "minimum-stability": "dev"
+}
