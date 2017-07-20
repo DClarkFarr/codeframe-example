@@ -15,12 +15,15 @@ return [
 	'paths' => array(
 		'root' => coalesce(ifGlobal('APP_PATHS_ROOT'), $_SERVER['DOCUMENT_ROOT']),
 		'application' => coalesce(ifGlobal('APP_PATHS_APPLICATION'), realpath(__DIR__ . '/../')),
-		'routes' => coalesce(ifGlobal('APP_PATHS_ROUTES'), realpath(__DIR__ . '/../routes')),
-		'controllers' => coalesce(ifGlobal('APP_PATHS_CONTROLLERS'), realpath(__DIR__ . '/../Controllers')),
 		'models' => realpath( __DIR__ . '/../Models'),
 		'services' => realpath( __DIR__ . '/../Services'),
 		'utils' => realpath( __DIR__ . '/../Utils'),
-		'templates' => realpath(__DIR__ . '/../templates'),
-		'views' => realpath(__DIR__ . '/../views'),
+		'routes' => coalesce(ifGlobal('APP_PATHS_ROUTES'), realpath(__DIR__ . '/../Http/routes')),
+		'controllers' => coalesce(ifGlobal('APP_PATHS_CONTROLLERS'), realpath(__DIR__ . '/../Http/Controllers')),
+		'templates' => realpath(__DIR__ . '/../Http/templates'),
+		'views' => realpath(__DIR__ . '/../Http/views'),
+	),
+	'timezones' => array(
+		'server_default' => 'UTC',
 	),
 ];

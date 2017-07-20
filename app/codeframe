@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+include __DIR__ . '/codeframe-load.php';
+
+die('good');
+class Codeframe {
+    public $args;
+    public $config;
+
+    public function __construct($args) {
+        $this->args = $args;
+        $this->config = Codeframe\Config::get('database.migrations');
+        print_r($this);
+        die('end');
+    }
+
+    private function help() {
+        echo "usage: php " . $this->args[0] . " <command> [<args>]n";
+    }
+
+    public function run() {
+        if (count($this->args) <= 1) {
+            $this->help();
+        } else {
+            switch ($this->args[1]) {
+                case "migrate":
+                    $this->runMigrations();
+                    break;
+                case "help":
+                case "--help":
+                    $this->help();
+                    break;
+            }
+        }
+    }
+
+    private function runMigrations() {
+        $files = glob(DB_MIGRATION_SCHEMA_PATH.'/*.php');
+        foreach ($files as $file) {
+            require_once($file);
+            $class = basename($file, '.php');
+            $migration = new $class;
+            $migration->run();
+        }
+    }
+}
+
+$db = new Codeframe($argv);
+$db->run();
+?>
