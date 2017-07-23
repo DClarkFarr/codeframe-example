@@ -8,6 +8,7 @@ return [
 		    'database'  => 'nitro_db',
 		    'username'  => 'fb_admin',
 		    'password'  => 'fb4m3!',
+				'unix_socket' => '/Applications/MAMP/tmp/mysql/mysql.sock',
 		],
 	],
 	'migrations' => [
